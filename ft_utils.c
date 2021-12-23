@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:55 by msaouab           #+#    #+#             */
-/*   Updated: 2021/12/21 22:28:31 by msaouab          ###   ########.fr       */
+/*   Updated: 2021/12/23 04:01:04 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,29 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-int	ft_atoi(const char *str)
+int	ft_check_alpha(char *str, int i)
+{
+	int	res;
+
+	res = 0;
+	while (str[i])
+	{
+		if (str[i] >= '0' && str[i] <= '9')
+		{
+			res *= 10;
+			res += str[i] - '0';
+		}
+		else
+		{
+			ft_error(65);
+			exit(0);
+		}
+		i++;
+	}
+	return (res);
+}
+
+int	ft_atoi(char *str)
 {
 	long	i;
 	long	res;
@@ -39,13 +61,6 @@ int	ft_atoi(const char *str)
 			sign = -1;
 		i++;
 	}
-	while (str[i] && str[i] >= '0' && str[i] <= '9')
-	{
-		res *= 10;
-		res += str[i] - '0';
-		i++;
-	}
-	if (sign == -1)
-		return (-res);
-	return (res);
+	res = ft_check_alpha(str, i);
+	return (res * sign);
 }
