@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 13:41:35 by msaouab           #+#    #+#             */
-/*   Updated: 2021/12/23 04:16:10 by msaouab          ###   ########.fr       */
+/*   Updated: 2021/12/24 15:58:58 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 /* ************************************************************************** */
 
@@ -41,8 +42,9 @@ void	rever_rrb(t_stack *stack_a, t_stack *stack_b);
 
 /* ************************************************************************** */
 
-size_t	ft_strlen(const char *s);
+size_t	ft_strlen(char *s);
 int		ft_atoi(char *str);
 void	ft_error(int n);
+char	**ft_split(char *s, char c);
 
 #endif

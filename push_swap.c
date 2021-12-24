@@ -5,47 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/20 13:41:32 by msaouab           #+#    #+#             */
-/*   Updated: 2021/12/23 04:56:00 by msaouab          ###   ########.fr       */
+/*   Created: 2021/12/24 03:37:18 by msaouab           #+#    #+#             */
+/*   Updated: 2021/12/24 23:45:04 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-void	ft_error(int n)
+void	ft_error(int ac)
 {
-	if (n <= 1)
+	if (ac == 1)
 	{
-		write(1, "not enough args", 15);
+		write(1, "error\n", 6);
 		exit(1);
 	}
-	if (n == 2)
-		exit (0);
-	if (n == 65 || n == 48)
-	{
-		write(1, "error", 5);
-		exit(1);
-	}
+	if (ac == 2)
+		exit(0);
+	if (ac == 5)
+		write(1, "wtf\n", 4);
 }
-
-// char	*ft_check_str(char *arg)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (arg[i])
-// 	{
-// 		if (arg[i] == '-')
-// 			i++;
-// 		if (arg[i] >= '0' && arg[i] <= '9')
-// 			ft_error(65);
-// 		else if (arg[i] <= '0' && arg[i] >= '9')
-// 			ft_error(65);
-// 		i++;
-// 	}
-// 	return (arg);
-// }
 
 int	*ft_check_dup(int *arr)
 {
@@ -59,7 +37,7 @@ int	*ft_check_dup(int *arr)
 		while (arr[j])
 		{
 			if (arr[i] == arr[j])
-				ft_error(48);
+				ft_error(5);
 			j++;
 		}
 		i++;
@@ -69,29 +47,24 @@ int	*ft_check_dup(int *arr)
 
 int	main(int ac, char **av)
 {
-	t_stack	*stack_a = NULL;
+	// t_stack	*stack_a;
 	// t_stack	*stack_b;
-	int		*arr;
+	int		tab[ac];
 	int		i;
 
-	arr = 0;
-			// i = 2;÷
-			// while (av[i])
 	if (ac <= 2)
 		ft_error(ac);
-	else
+	if (ac > 2)
 	{
-		stack_a = (t_stack *)malloc(sizeof(t_stack) * (ac + 1));
-		if (!stack_a->tab)
-			return (0);
-		i = 1;
-		while (av[i])
+		i = 0;
+		while (av[i + 1])
 		{
-			// if (ft_check_str(av[i]) == 1)
-				arr = ft_atoi(av[i]);
-				ft_check_dup(arr);
-				printf("%d\n", ft_check_dup(arr);
+			tab[i] = ft_atoi(av[i + 1]);
 			i++;
 		}
+		ft_check_dup(tab);
+		i = 0;
+		while (i < ac - 1)
+			printf("||%d||\n", tab[i++]);
 	}
 }

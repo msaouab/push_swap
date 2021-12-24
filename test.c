@@ -1,40 +1,33 @@
 #include <stdio.h>
-#include <stdlib.h>
-int	ft_check_dup(int *arr)
+
+int	*ft_check_dup(int *arr)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (arr[i])
+	while (i < 5)
 	{
 		j = i + 1;
-		while (arr[j])
+		while (j < 5)
 		{
 			if (arr[i] == arr[j])
-				return (0);
+				printf("error\n");
 			j++;
 		}
 		i++;
 	}
-	return (*arr);
+	return (arr);
 }
 
-int	main(int ac, char **av)
+int	main()
 {
-	int	arr[ac];
-	int tab[ac];
-	int	i = 1;
-	while (i < ac)
-	{
-		arr[i] = atoi(av[i]);
-		i++;
-	}
-	i = 0;
+	int	i = 0;
+	int	tab[5] = {1, 2, 3, 4, 5};
+	ft_check_dup(tab);
 	while (i < 5)
 	{
-		tab[i] = ft_check_dup(arr);
-		printf("%d", tab[i]);
-		i++;
+		printf("%d\n", tab[i++]);
 	}
+
 }
