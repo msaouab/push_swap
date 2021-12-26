@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 16:06:51 by msaouab           #+#    #+#             */
-/*   Updated: 2021/12/24 23:43:15 by msaouab          ###   ########.fr       */
+/*   Updated: 2021/12/25 01:17:15 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	ft_check_str(char *str, int i)
 	int	res;
 
 	res = 0;
-	// if (str[i] >= '0' && str[i] <= '9')
-	// {
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
 		res *= 10;
@@ -27,9 +25,6 @@ int	ft_check_str(char *str, int i)
 	}
 	if (str[i] != '\0')
 		ft_error(1);
-	// }
-	// if (str[i] < '0' || str[i] > '9')
-	// else
 	return (res);
 }
 

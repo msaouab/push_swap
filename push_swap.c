@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 03:37:18 by msaouab           #+#    #+#             */
-/*   Updated: 2021/12/24 23:45:04 by msaouab          ###   ########.fr       */
+/*   Updated: 2021/12/26 09:54:40 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,33 +22,34 @@ void	ft_error(int ac)
 	if (ac == 2)
 		exit(0);
 	if (ac == 5)
-		write(1, "wtf\n", 4);
+		write(1, "??\n", 4);
 }
 
-int	*ft_check_dup(int *arr)
+int	*ft_check_dup(int *arr, int size)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (arr[i])
+	while (i < size - 1)
 	{
 		j = i + 1;
-		while (arr[j])
+		while (j < size)
 		{
 			if (arr[i] == arr[j])
-				ft_error(5);
+				ft_error(1);
 			j++;
 		}
 		i++;
 	}
 	return (arr);
 }
-
+#include <string.h>
+#include <stdlib.h>
 int	main(int ac, char **av)
 {
-	// t_stack	*stack_a;
-	// t_stack	*stack_b;
+	t_stack	stack_a;
+	// t_stack	stack_b;
 	int		tab[ac];
 	int		i;
 
@@ -62,9 +63,11 @@ int	main(int ac, char **av)
 			tab[i] = ft_atoi(av[i + 1]);
 			i++;
 		}
-		ft_check_dup(tab);
+		ft_check_dup(tab, ac - 1);
+		stack_a.tab = malloc(sizeof(int) * (ac - 1));
+		ft_memcpy(stack_a.tab, tab, (ac - 1) * 4);
 		i = 0;
 		while (i < ac - 1)
-			printf("||%d||\n", tab[i++]);
+			printf("%d\n", stack_a.tab[i++]);
 	}
 }
