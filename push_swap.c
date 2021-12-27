@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 03:37:18 by msaouab           #+#    #+#             */
-/*   Updated: 2021/12/27 17:01:44 by msaouab          ###   ########.fr       */
+/*   Updated: 2021/12/27 19:21:41 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,13 @@ int	*ft_check_dup(int *arr, int size)
 	return (arr);
 }
 
-void	actions(t_stack *stack_a, t_stack *stack_b)
+void	initialize_given_stack(t_stack *given_stack, int stack_size)
 {
-	
+	given_stack->filled_size = 0;
+	given_stack->tab = malloc(sizeof(int) * stack_size);
 }
+
+
 
 int	main(int ac, char **av)
 {
@@ -69,12 +72,16 @@ int	main(int ac, char **av)
 			i++;
 		}
 		ft_check_dup(tab, ac - 1);
-		stack_a.tab = malloc(sizeof(int) * (ac - 1));
+		// stack_a.tab = malloc(sizeof(int) * (ac - 1));
+		initialize_given_stack(&stack_a, ac - 1);
 		ft_memcpy(stack_a.tab, tab, (ac - 1) * 4);
-		actions(&stack_a, &stack_b);
-		// i = 0;
-		// while (i < ac - 1)
-		// 	printf("%d\n", stack_a.tab[i++]);
+		stack_a.filled_size = ac - 1;
+		if (stack_a.filled_size < 10)
+			small_stack(&stack_a, &stack_b);
+	// 	i = 0;
+	// 	// while (i < ac - 1)
+	// 	// 	printf("%d\n", stack_a.tab[i++]);
+	// 	while (i < stack_a.filled_size)
+	// 	printf("%d\n", stack_a.tab[i++]);
 	}
 }
-

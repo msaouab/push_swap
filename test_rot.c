@@ -31,7 +31,7 @@ void	rotate_a(t_stack *stack_a)
 		i++;
 	}
 	stack_a->tab[i] = tmp;
-	ft_putstr("ra\n");
+	// ft_putstr("ra\n");
 }
 
 int	main()
