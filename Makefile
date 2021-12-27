@@ -6,7 +6,7 @@
 #    By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 21:38:28 by msaouab           #+#    #+#              #
-#    Updated: 2021/12/25 01:17:43 by msaouab          ###   ########.fr        #
+#    Updated: 2021/12/26 10:22:02 by msaouab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,12 @@ NAME = push_swap
 HEADER = push_swap.h
 
 SRC = push_swap.c\
-		ft_memcpy.c\
 		ft_atoi.c\
+		stack_a.c\
+		stack_b.c\
+		stack_ab.c\
 		ft_strlen.c\
+		ft_memcpy.c\
 
 OBJ = ${SRC:.c=.o}
 

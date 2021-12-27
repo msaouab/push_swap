@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 01:19:03 by msaouab           #+#    #+#             */
-/*   Updated: 2021/12/26 09:52:01 by msaouab          ###   ########.fr       */
+/*   Updated: 2021/12/27 10:59:43 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	swap_a(t_stack stack_a)
 {
 	int	tmp;
 
-	if (!stack_a.tab || stack_a.tab <= 1)
+	if (!stack_a.tab)
 		return ;
 	tmp = stack_a.tab[0];
 	stack_a.tab[0] = stack_a.tab[1];
@@ -28,11 +28,11 @@ void	push_a(t_stack stack_a, t_stack stack_b)
 	int	i;
 
 	i = 0;
-	if (!stack_a.tab || !stack_b.tab)
+	if (stack_b.size == 0)
 		return ;
-	while (stack_a.tab[i])
-		i++;
-	stack_a.tab = malloc(sizeof(int) * (i + 1));
+	// while (stack_a.tab[i] != 0)
+	// 	i++;
+	// stack_a.tab = malloc(sizeof(int) * (i + 1));
 	while (stack_a.tab[i])
 	{
 		stack_a.tab[i + 1] = stack_a.tab[i];

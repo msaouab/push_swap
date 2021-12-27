@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 03:37:18 by msaouab           #+#    #+#             */
-/*   Updated: 2021/12/26 09:54:40 by msaouab          ###   ########.fr       */
+/*   Updated: 2021/12/27 10:48:57 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,20 @@ int	*ft_check_dup(int *arr, int size)
 	}
 	return (arr);
 }
-#include <string.h>
-#include <stdlib.h>
+
+
 int	main(int ac, char **av)
 {
 	t_stack	stack_a;
 	// t_stack	stack_b;
-	int		tab[ac];
+	int		*tab;
 	int		i;
 
 	if (ac <= 2)
 		ft_error(ac);
 	if (ac > 2)
 	{
+		tab = malloc(sizeof(int) * ac - 1);
 		i = 0;
 		while (av[i + 1])
 		{
