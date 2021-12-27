@@ -16,39 +16,65 @@ void	initialize_given_stack(t_stack *given_stack, int stack_size)
 	given_stack->tab = malloc(sizeof(int) * stack_size);
 }
 
-void	push_to_b(t_stack *stack_a, t_stack *stack_b)
+// void	push_to_b(t_stack *stack_a, t_stack *stack_b)
+// {
+// 	int	i;
+
+// 	if (stack_a->filled_size == 0)
+// 		return ;
+// 	if (stack_b->filled_size != 0)
+// 	{
+// 		i = stack_b->filled_size;
+// 		while (i >= 0)
+// 		{
+// 			stack_b->tab[i + 1] = stack_b->tab[i];
+// 			i--;
+// 		}
+// 	}
+// 	stack_b->tab[0] = stack_a->tab[0];
+// 	i = 0;
+// 	while (i <= stack_a->filled_size - 1)
+// 	{
+// 		stack_a->tab[i - 1] = stack_a->tab[i];
+// 		i++;
+// 	}
+// 	stack_a->filled_size -= 1;
+// 	stack_b->filled_size += 1;
+// }
+
+void	push_to_a(t_stack *stack_a, t_stack *stack_b)
 {
 	int	i;
 
-	if (stack_a->filled_size == 0)
+	if (stack_b->filled_size == 0)
 		return ;
-	if (stack_b->filled_size != 0)
+	if (stack_a->filled_size != 0)
 	{
-		i = stack_b->filled_size - 1;
+		i = stack_a->filled_size;
 		while (i >= 0)
 		{
-			stack_b->tab[i + 1] = stack_b->tab[i];
+			stack_a->tab[i + 1] = stack_a->tab[i];
 			i--;
 		}
 	}
-	stack_b->tab[0] = stack_a->tab[0];
+	stack_a->tab[0] = stack_b->tab[0];
 	i = 0;
-	while (i <= stack_a->filled_size - 1)
+	while (i <= stack_b->filled_size - 1)
 	{
-		stack_a->tab[i - 1] = stack_a->tab[i];
+		stack_b->tab[i - 1] = stack_b->tab[i];
 		i++;
 	}
-	stack_a->filled_size -= 1;
-	stack_b->filled_size += 1;
+	stack_b->filled_size -= 1;
+	stack_a->filled_size += 1;
+	// ft_putstr("pa\n");
 }
-
 
 int	main()
 {
 	t_stack stack_a;
 	t_stack stack_b;
-	int arr_a[ARGS_NUM] =  {1, 2, 3, 4, 5};
-	int arr_b[ARGS_NUM] =  {6, 7, 8, 9, 10};
+	int arr_b[ARGS_NUM] =  {1, 2, 3, 4, 5};
+	int arr_a[ARGS_NUM] =  {6, 7, 8, 9, 10};
 	int	i = 0;
 	
 	initialize_given_stack(&stack_a, ARGS_NUM);
@@ -63,14 +89,13 @@ int	main()
 	memcpy(stack_b.tab, arr_b, 5 * sizeof(int));
 	stack_a.filled_size = 5;
 	stack_b.filled_size = 5;
-	
-	push_to_b(&stack_a, &stack_b);
-i = 0;
-	printf("stack a :\n");
-	while (i < stack_a.filled_size)
-		printf("%d\n", stack_a.tab[i++]);
-i = 0;
+	push_to_a(&stack_a, &stack_b);
+	i = 0;
 	printf("stack b :\n");
 	while (i < stack_b.filled_size)
 		printf("%d\n", stack_b.tab[i++]);
+	i = 0;
+	printf("stack a :\n");
+	while (i < stack_a.filled_size)
+		printf("%d\n", stack_a.tab[i++]);
 }

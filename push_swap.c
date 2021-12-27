@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 03:37:18 by msaouab           #+#    #+#             */
-/*   Updated: 2021/12/27 10:48:57 by msaouab          ###   ########.fr       */
+/*   Updated: 2021/12/27 17:01:44 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,15 @@ int	*ft_check_dup(int *arr, int size)
 	return (arr);
 }
 
+void	actions(t_stack *stack_a, t_stack *stack_b)
+{
+	
+}
 
 int	main(int ac, char **av)
 {
 	t_stack	stack_a;
-	// t_stack	stack_b;
+	t_stack	stack_b;
 	int		*tab;
 	int		i;
 
@@ -67,8 +71,10 @@ int	main(int ac, char **av)
 		ft_check_dup(tab, ac - 1);
 		stack_a.tab = malloc(sizeof(int) * (ac - 1));
 		ft_memcpy(stack_a.tab, tab, (ac - 1) * 4);
-		i = 0;
-		while (i < ac - 1)
-			printf("%d\n", stack_a.tab[i++]);
+		actions(&stack_a, &stack_b);
+		// i = 0;
+		// while (i < ac - 1)
+		// 	printf("%d\n", stack_a.tab[i++]);
 	}
 }
+
