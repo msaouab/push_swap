@@ -6,7 +6,7 @@
 #    By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 21:38:28 by msaouab           #+#    #+#              #
-#    Updated: 2021/12/26 10:22:02 by msaouab          ###   ########.fr        #
+#    Updated: 2021/12/28 21:32:54 by msaouab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC = push_swap.c\
 		stack_ab.c\
 		ft_strlen.c\
 		ft_memcpy.c\
+		set_tab_index.c\
 
 OBJ = ${SRC:.c=.o}
 

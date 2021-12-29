@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 01:19:14 by msaouab           #+#    #+#             */
-/*   Updated: 2021/12/27 16:42:10 by msaouab          ###   ########.fr       */
+/*   Updated: 2021/12/29 03:26:15 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	rotate_b(t_stack *stack_b)
 		i++;
 	}
 	stack_b->tab[i] = tmp;
-	ft_putstr("rb\n");
+	// ft_putstr("rb\n");
 }
 
 void	reverot_b(t_stack *stack_b)
@@ -84,5 +84,5 @@ void	reverot_b(t_stack *stack_b)
 		i--;
 	}
 	stack_b->tab[0] = tmp;
-	ft_putstr("rrb\n");
+	// ft_putstr("rrb\n");
 }

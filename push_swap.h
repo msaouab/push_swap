@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 13:41:35 by msaouab           #+#    #+#             */
-/*   Updated: 2021/12/27 16:42:22 by msaouab          ###   ########.fr       */
+/*   Updated: 2021/12/29 04:55:11 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+
+# define false 0
+# define true 1
 
 /* **************************** | struct | ********************************** */
 
@@ -48,4 +51,11 @@ int		ft_atoi(char *str);
 void	ft_error(int n);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 
+
+
+
+int	*set_index(int *tab, int size);
+int get_min_number_index(int *tab, int size);
+int get_max_number_index(int *tab, int size);
+int get_index_of_number(int *tab, int size, int number);
 #endif
