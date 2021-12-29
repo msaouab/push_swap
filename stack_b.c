@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 01:19:14 by msaouab           #+#    #+#             */
-/*   Updated: 2021/12/29 03:26:15 by msaouab          ###   ########.fr       */
+/*   Updated: 2021/12/29 07:56:27 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	push_to_b(t_stack *stack_a, t_stack *stack_b)
 	}
 	stack_a->filled_size -= 1;
 	stack_b->filled_size += 1;
-	ft_putstr("pb\n");
+	//ft_putstr("pb\n");
 }
 
 void	rotate_b(t_stack *stack_b)

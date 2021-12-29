@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 03:37:18 by msaouab           #+#    #+#             */
-/*   Updated: 2021/12/29 04:44:47 by msaouab          ###   ########.fr       */
+/*   Updated: 2021/12/29 08:16:28 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,12 +258,12 @@ int main(int ac, char **av)
 		// 	printf("%d\n", stack_a.tab[i++]);
 		// while (i < stack_a.filled_size)
 		//	printf("%d\n", stack_a.tab[i++]);
-		while (i < ac - 1)
-		{
-			printf("tab[%d] = %d\n", i, stack_a.tab[i]);
-			i++;
-		}
-		printf("\n\n");
+		// while (i < ac - 1)
+		// {
+		// 	printf(" %d ", stack_a.tab[i]);
+		// 	i++;
+		// }
+		// printf("\n");
 
 		int *ordered_table = set_index(stack_a.tab, ac - 1);
 
@@ -279,33 +279,35 @@ int main(int ac, char **av)
 			if (ordered_table[0] == 0)
 			{
 				push_to_b(&stack_a, &stack_b);
+				ft_putstr("pb\n");
 				ordered_table[0] = 1;
 				rotate_table(ordered_table, ac - 1);
 			}
 			else
 			{
 				rotate_a(&stack_a);
+				ft_putstr("ra\n");
 				rotate_table(ordered_table, ac - 1);
 			}
 			counter++;
 		}
+		// printf("\n\n stack a\n");
+		// i = 0;
+		// while (i < stack_a.filled_size)
+		// {
+		// 	printf("tab[%d] = %d\n", i, stack_a.tab[i]);
+		// 	i++;
+		// }
 
-		printf("\n\n stack b\n");
-		while (i < stack_b.filled_size)
-		{
-			printf("tab[%d] = %d\n", i, stack_b.tab[i]);
-			i++;
-		}
+		// printf("\n\n stack b\n");
+		// i = 0;
+		// while (i < stack_b.filled_size)
+		// {
+		// 	printf("tab[%d] = %d\n", i, stack_b.tab[i]);
+		// 	i++;
+		// }
 
-		printf("\n\n stack a\n");
-		i = 0;
-		while (i < stack_a.filled_size)
-		{
-			printf("tab[%d] = %d\n", i, stack_a.tab[i]);
-			i++;
-		}
-
-		printf("filled a : %d   | filled b : %d \n", stack_a.filled_size, stack_b.filled_size);
+		// printf("filled a : %d   | filled b : %d \n", stack_a.filled_size, stack_b.filled_size);
 
 		///// choose the best from stack b element to push to  stack a
 
@@ -314,6 +316,9 @@ int main(int ac, char **av)
 			i = 0;
 
 			int *tab_best_move = (int *)malloc(sizeof(int) * stack_b.filled_size);
+			int tmp_moves_in_b = 0;
+			int tmp_moves_in_a = 0;
+
 			while (i < stack_b.filled_size)
 			{
 				tab_best_move[i] = 2147483647;
@@ -323,24 +328,33 @@ int main(int ac, char **av)
 
 			while (i < stack_b.filled_size)
 			{
-				tab_best_move[i] = count_moves_in_stack_a(stack_a, stack_b.tab[i]) + count_moves_in_stack_b(stack_b, i);
+				tmp_moves_in_a = count_moves_in_stack_b(stack_b, i);
+				tmp_moves_in_b = count_moves_in_stack_a(stack_a, stack_b.tab[i]);
+				if (tmp_moves_in_a < 0)
+					tmp_moves_in_a *= -1;
+				if (tmp_moves_in_b < 0)
+					tmp_moves_in_b *= -1;
+				tab_best_move[i] = tmp_moves_in_a + tmp_moves_in_b;
+				// printf("before best : count_moves_in_stack_a %d \n", tab_best_move[i]);
 				i++;
 			}
 
-			i = 0;
-			while (i < stack_b.filled_size)
-			{
-				printf("best_move[%d] = %d\n", i, tab_best_move[i]);
-				i++;
-			}
+			// i = 0;
+			// printf("\nbest_move\n");
+			// while (i < stack_b.filled_size)
+			// {
+			// 	printf("best_move[%d] = %d\n", i, tab_best_move[i]);
+			// 	i++;
+			// }
 
 			////// align both stacks
 
 			int best_index_to_push_from_b_to_a = get_best_index(tab_best_move, stack_b.filled_size);
 
+			// printf("\nbest_index_to_push_from_b_to_a : %d \n", best_index_to_push_from_b_to_a);
 			align_fuckin_stacks(&stack_a, &stack_b, best_index_to_push_from_b_to_a);
 			push_to_a(&stack_a, &stack_b);
-
+			ft_putstr("pa\n");
 		}
 	}
 
@@ -348,7 +362,7 @@ int main(int ac, char **av)
 
 	int count_moves_stack_a_final = get_min_number_index(stack_a.tab, stack_a.filled_size);
 
-	// printf(" ---- > min %d \n", count_moves_stack_a_final);
+	//printf(" ---- > min %d \n", count_moves_stack_a_final);
 	while (count_moves_stack_a_final > 0)
 	{
 		rotate_a(&stack_a);
@@ -357,52 +371,110 @@ int main(int ac, char **av)
 	}
 	while (count_moves_stack_a_final < 0)
 	{
-		rotate_a(&stack_a);
-		ft_putstr("ra\n");
+		reverot_a(&stack_a);
+		ft_putstr("rra\n");
 		count_moves_stack_a_final++;
 	}
-
+/*
 	printf("\n\n stack a\n");
 	i = 0;
 	while (i < stack_a.filled_size)
 	{
-		printf("tab[%d] = %d\n", i, stack_a.tab[i]);
+		printf("stack_a[%d] = %d\n", i, stack_a.tab[i]);
 		i++;
 	}
+	printf("\n\n stack b\n");
+	i = 0;
+	while (i < stack_b.filled_size)
+	{
+		printf("stack_b[%d] = %d\n", i, stack_b.tab[i]);
+		i++;
+	}
+	*/
 }
 
 void align_fuckin_stacks(t_stack *stack_a, t_stack *stack_b, int best_index_to_push_from_b_to_a)
 {
 	int moves_in_stack_a = count_moves_in_stack_a(*stack_a, stack_b->tab[best_index_to_push_from_b_to_a]);
 	int moves_in_stack_b = count_moves_in_stack_b(*stack_b, best_index_to_push_from_b_to_a);
+/*
+	printf("\n\n     before align stack stack a\n");
+	int i = 0;
+	while (i < stack_a->filled_size)
+	{
+		printf("tab[%d] = %d\n", i, stack_a->tab[i]);
+		i++;
+	}
 
-	printf("align stacks number : %d  |   a  %d |  b  %d \n",stack_b->tab[best_index_to_push_from_b_to_a], moves_in_stack_a, moves_in_stack_b);
+	printf("\n\n stack b\n");
+	i = 0;
+	while (i < stack_b->filled_size)
+	{
+		printf("tab[%d] = %d\n", i, stack_b->tab[i]);
+		i++;
+	}
 
+	printf("align stacks number : %d  |   a  %d |  b  %d \n", stack_b->tab[best_index_to_push_from_b_to_a], moves_in_stack_a, moves_in_stack_b);
+*/
 	if (moves_in_stack_a != 0 && moves_in_stack_b != 0)
 	{
 		if (moves_in_stack_b * moves_in_stack_a > 0)
 		{
-			while (moves_in_stack_a > 0 && moves_in_stack_b)
+			if (moves_in_stack_a > 0 && moves_in_stack_b > 0)
 			{
-				rot_ab(stack_a, stack_b);
-				moves_in_stack_b--;
-				moves_in_stack_a--;
+				while (moves_in_stack_a > 0 && moves_in_stack_b > 0)
+				{
+					rot_ab(stack_a, stack_b);
+					ft_putstr("rr\n");
+					moves_in_stack_b--;
+					moves_in_stack_a--;
+				}
+				while (moves_in_stack_a > 0)
+				{
+					rotate_a(stack_a);
+					ft_putstr("ra\n");
+					moves_in_stack_a--;
+				}
+				while (moves_in_stack_b > 0)
+				{
+					rotate_b(stack_b);
+					ft_putstr("rb\n");
+					moves_in_stack_b--;
+				}
 			}
-			while (moves_in_stack_a > 0)
+			else
 			{
-				rotate_a(stack_a);
-				ft_putstr("ra\n");
-				moves_in_stack_a--;
-			}
-			while (moves_in_stack_b > 0)
-			{
-				rotate_b(stack_b);
-				ft_putstr("rb\n");
-				moves_in_stack_b--;
+				while (moves_in_stack_a < 0 && moves_in_stack_b < 0)
+				{
+					reverot_ab(stack_a, stack_b);
+					ft_putstr("rrr\n");
+					moves_in_stack_b++;
+					moves_in_stack_a++;
+				}
+				while (moves_in_stack_a < 0)
+				{
+					reverot_a(stack_a);
+					ft_putstr("rra\n");
+					moves_in_stack_a++;
+				}
+				while (moves_in_stack_b < 0)
+				{
+					reverot_b(stack_b);
+					ft_putstr("rrb\n");
+					moves_in_stack_b++;
+				}
 			}
 		}
 		else
 		{
+			while (moves_in_stack_a < 0 && moves_in_stack_b < 0)
+			{
+				reverot_ab(stack_a, stack_b);
+				ft_putstr("rrr\n");
+				moves_in_stack_b++;
+				moves_in_stack_a++;
+			}
+
 			while (moves_in_stack_a > 0)
 			{
 				rotate_a(stack_a);
@@ -417,14 +489,14 @@ void align_fuckin_stacks(t_stack *stack_a, t_stack *stack_b, int best_index_to_p
 			}
 			while (moves_in_stack_a < 0)
 			{
-				rotate_a(stack_a);
-				ft_putstr("ra\n");
+				reverot_a(stack_a);
+				ft_putstr("rra\n");
 				moves_in_stack_a++;
 			}
 			while (moves_in_stack_b < 0)
 			{
-				rotate_b(stack_b);
-				ft_putstr("rb\n");
+				reverot_b(stack_b);
+				ft_putstr("rrb\n");
 				moves_in_stack_b++;
 			}
 		}
@@ -437,22 +509,22 @@ void align_fuckin_stacks(t_stack *stack_a, t_stack *stack_b, int best_index_to_p
 			ft_putstr("ra\n");
 			moves_in_stack_a--;
 		}
+		while (moves_in_stack_a < 0)
+		{
+			reverot_a(stack_a);
+			ft_putstr("rra\n");
+			moves_in_stack_a++;
+		}
 		while (moves_in_stack_b > 0)
 		{
 			rotate_b(stack_b);
 			ft_putstr("rb\n");
 			moves_in_stack_b--;
 		}
-		while (moves_in_stack_a < 0)
-		{
-			rotate_a(stack_a);
-			ft_putstr("ra\n");
-			moves_in_stack_a++;
-		}
 		while (moves_in_stack_b < 0)
 		{
-			rotate_b(stack_b);
-			ft_putstr("rb\n");
+			reverot_b(stack_b);
+			ft_putstr("rrb\n");
 			moves_in_stack_b++;
 		}
 	}

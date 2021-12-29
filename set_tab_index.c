@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 19:31:45 by msaouab           #+#    #+#             */
-/*   Updated: 2021/12/29 04:59:08 by msaouab          ###   ########.fr       */
+/*   Updated: 2021/12/29 06:46:15 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,15 @@ int get_index_of_number(int *tab, int size, int number)
 	return (0);
 }
 */
-int 	*set_index(int *tab, int size)
+int *set_index(int *tab, int size)
 {
-	int	*tab_index;
-	int	i;
-	int	j;
-	int	count = 0;
+	int *tab_index;
+	int i;
+	int j;
+	int count = 0;
 
 	tab_index = malloc(sizeof(int) * size);
-	
+
 	i = 0;
 	while (i < size)
 	{
@@ -88,27 +88,26 @@ int 	*set_index(int *tab, int size)
 		}
 		i++;
 	}
-	 i = 0;
-	 while (i < size)
-	 {
-	 	printf("tab_index[%d] = %d\n", i , tab_index[i]);
-	 	i++;
-	 }
-
+	i = 0;
+	//while (i < size)
+	//{
+	//	printf("tab_index[%d] = %d\n", i, tab_index[i]);
+	//	i++;
+	//}
+//
 	i = 0;
 	count = 0;
-	int min_index = get_min_number_index(tab_index,size);
-	int *order_tab = (int*)malloc(sizeof(int) * size);
+	int min_index = get_min_number_index(tab_index, size);
+	int *order_tab = (int *)malloc(sizeof(int) * size);
 	while (count < size)
 	{
 		order_tab[count] = false;
 		count++;
 	}
-	count = 0;
-	order_tab[min_index] = true;
-	int index = tab_index[min_index];
-	j = 0;
-	while (count < size)
+	/*
+	j = min_index + 1;
+	j %= size;
+	while (count < size - 1)
 	{
 		if (tab_index[j] == index)
 		{
@@ -116,29 +115,36 @@ int 	*set_index(int *tab, int size)
 			index++;
 		}
 		j++;
-		count++;	
+		j %= size;
+		// if (j == size)
+		// 	j = 0;
+		count++;
+	}*/
+	//printf("min index : %d\n", min_index);
+	j = min_index + 1;
+	order_tab[min_index] = true;
+	j %= size;
+	int index = tab_index[min_index] + 1;
+	// int tmp = index;
+	count = 0;
+	while (count < size - 1)
+	{
+		if (tab_index[j] == index)
+		{
+			order_tab[j] = true;
+			index++;
+		}
+		j++;
+		count++;
 		if (j == size)
 			j = 0;
 	}
-	// j = 0;
-	// while (count < size)
-	// {
-	// 	if (tab_index[j] == index)
-	// 	{
-	// 		order_tab[j] = true;
-	// 		index++;
-	// 	}
-	// 	j++;
-	// 	count++;	
-	// 	if (j == size)
-	// 		j = 0;
-	// }
 	i = 0;
-	printf("\n\n\n");
-	while (i < size)
-	{
-		printf("order_tab[%d] = %s\n", i , order_tab[i] == 1 ? "true" : "false");
-		i++;
-	}
-	return order_tab;	
+	//printf("\n\n\n");
+	//while (i < size)
+	//{
+	//	printf("order_tab[%d] = %s\n", i, order_tab[i] == 1 ? "true" : "false");
+	//	i++;
+	//}
+	return order_tab;
 }
