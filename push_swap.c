@@ -6,11 +6,12 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 03:37:18 by msaouab           #+#    #+#             */
-/*   Updated: 2021/12/29 08:16:28 by msaouab          ###   ########.fr       */
+/*   Updated: 2021/12/30 09:54:11 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 void align_fuckin_stacks(t_stack *stack_a, t_stack *stack_b, int best_index_to_push_from_b_to_a);
 
 int get_min_number_index(int *tab, int size)
@@ -198,8 +199,6 @@ void ft_error(int ac)
 	}
 	if (ac == 2)
 		exit(0);
-	if (ac == 5)
-		write(1, "??\n", 4);
 }
 
 int *ft_check_dup(int *arr, int size)
