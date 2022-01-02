@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 00:02:13 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/01 11:46:26 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/02 20:24:51 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,23 @@ int	max_indx(int *tab, int size)
 	return (max);
 }
 
+void	rotate_table(int *tab, int size)
+{
+	int	tmp;
+	int	i;
+
+	if (size == 0)
+		return ;
+	tmp = tab[0];
+	i = 0;
+	while (i < size - 1)
+	{
+		tab[i] = tab[i + 1];
+		i++;
+	}
+	tab[i] = tmp;
+}
+
 int	*set_index(int *tab, int size)
 {
 	int	*new_indx;
@@ -110,7 +127,6 @@ int	*set_index(int *tab, int size)
 	}
 	return (new_indx);
 }
-
 
 int	find_groups(int *tab, int size, int count, int i)
 {
@@ -144,14 +160,14 @@ int	find_groups(int *tab, int size, int count, int i)
 int	*true_false(int *tab, int size, int mark_header)
 {
 	int	i;
-	int traversed;
 	int	to_find;
+	int	traversed;
 	int	*tab_to_detect;
 
 	to_find = tab[mark_header];
 	traversed = 0;
 	tab_to_detect = malloc(sizeof(int) * size);
-	tab_to_detect[mark_header] = true;
+	tab_to_detect[mark_header] = TRUE;
 	i = mark_header + 1;
 	printf("index to start with = %d\n", i);
 	while (traversed < size - 1)
@@ -159,17 +175,14 @@ int	*true_false(int *tab, int size, int mark_header)
 		if (to_find < tab[i])
 		{
 			to_find = tab[i];
-			tab_to_detect[i] = true;
+			tab_to_detect[i] = TRUE;
 		}
 		else
-			tab_to_detect[i] = false;
+			tab_to_detect[i] = FALSE;
 		i++;
 		i = i % size;
 		traversed++;
 	}
-	i = 0;
-	while (i < size)
-		printf("%d\n", tab_to_detect[i++]);
 	return (tab_to_detect);
 }
 
@@ -177,39 +190,63 @@ int	*greater_than(int *tab, int size)
 {
 	int	*tab_groups;
 	int	per_grp;
+	int	index;
 	int	count;
 	int	i;
 
 	tab_groups = malloc(sizeof(int) * size);
-	i = 0;
-	while (i < size)
+	i = -1;
+	while (++i < size)
 	{
 		count = 1;
 		tab_groups[i] = find_groups(tab, size, count, i);
-		i++;
 	}
-	i = 0;
+	i = -1;
 	per_grp = tab_groups[0];
-int index = 0;
-	while (i < size)
+	index = 0;
+	while (++i < size)
 	{
 		if (per_grp < tab_groups[i])
 		{
-			printf("%d\n", i);
 			per_grp = tab_groups[i];
 			index = i;
 		}
-		i++;
 	}
-	printf("per group = %d\n", per_grp);
-	printf("index = %d\n", index);
-	tab_groups = true_false(tab, size, index);
-	return (tab_groups);
+	/*printf("index = %d\nper group = %d\n", index, per_grp);*/
+	// tab_groups = true_false(tab, size, index);
+	return (true_false(tab, size, index));
+}
+
+void	first_move(t_stack *stack_a, t_stack *stack_b, int size, int *mark_head)
+{
+	int	counter;
+	int	initial_size_of_stack_a;
+
+	counter = 0;
+	initial_size_of_stack_a = stack_a->filled_size;
+	while (counter < initial_size_of_stack_a)
+	{
+		if (mark_head[0] == 0)
+		{
+			push_to_b(stack_a, stack_b);
+			ft_putstr("pb\n");
+			mark_head[0] = 1;
+			rotate_table(mark_head, size);
+		}
+		else
+		{
+			rotate_a(stack_a);
+			ft_putstr("ra\n");
+			rotate_table(mark_head, size);
+		}
+		counter++;
+	}
 }
 
 void	push_swap(int ac, char **av)
 {
 	t_stack	stack_a;
+	t_stack	stack_b;
 	int		*tab_indx;
 	int		*mark_head;
 	int		*tab;
@@ -229,13 +266,26 @@ void	push_swap(int ac, char **av)
 	tab_indx = set_index(stack_a.tab, ac - 1);
 	mark_head = greater_than(stack_a.tab, ac - 1);
 	i = 0;
+	initialize_stack(&stack_b, ac - 1);
+	stack_b.filled_size = 0;
+	first_move(&stack_a, &stack_b, ac - 1, mark_head);
+/* ************************************************************************** */
+	i = 0;
 	printf("-------------\n");
-	printf("  tab_index[i]  \tnew_indx\tbest_group\n");
-	while (i < stack_a.filled_size)
+	printf("  stack_a[i]\t\t\tstack_b\n");
+	while (i < stack_a.filled_size || i < stack_b.filled_size)
 	{
-		printf("tab_index[%d] = |%d\t  |%d\t\t   |%d\n", i, stack_a.tab[i], tab_indx[i], mark_head[i]);
+		// printf("stack_a[%d] = {%d}\t  stack_b[%d] = {%d}\n",
+		// i, stack_a.tab[i], i, stack_b.tab[i]);
+		if (i < stack_a.filled_size)
+			printf("stack_a[%d] = {%d}\t", i, stack_a.tab[i]);
+		else
+			printf("\t\t\t");
+		if (i < stack_b.filled_size)
+			printf("stack_b[%d] = {%d}\n", i, stack_b.tab[i]);
 		i++;
 	}
+/* ************************************************************************** */
 }
 
 int	main(int ac, char **av)
