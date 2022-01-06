@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 00:02:13 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/06 00:41:54 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/07 00:52:56 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,6 +226,7 @@ int	*greater_than(int *tab, int size)
 
 void	first_move(t_stack *stack_a, t_stack *stack_b, int size, int *head)
 {
+	int	i;
 	int	counter;
 	int	initial_size_of_stack_a;
 
@@ -233,19 +234,42 @@ void	first_move(t_stack *stack_a, t_stack *stack_b, int size, int *head)
 	initial_size_of_stack_a = stack_a->filled_size;
 	while (counter < initial_size_of_stack_a)
 	{
+		i = 0;
+		while (head[0] == 1)
+			i++;
 		if (head[0] == 0)
 		{
 			push_to_b(stack_a, stack_b);
 			ft_putstr("pb\n");
 			head[0] = 1;
-			rotate_table(head, size);
 		}
-		else
+		else if (i < stack_a->filled_size / 2)
 		{
 			rotate_a(stack_a);
 			ft_putstr("ra\n");
 			rotate_table(head, size);
 		}
+		else if (i > stack_a->filled_size)
+		{
+			reverot_a(stack_a);
+			ft_putstr("rra\n");
+			
+		}
+		// // i = 0;
+		// // while (head[0] == 1)
+		// // 	i++;
+		// // if (i < stack_a->filled_size / 2)
+		// // {
+		// // 	rotate_a(stack_a);
+		// // 	ft_putstr("ra\n");
+		// // 	rotate_table(head, size);
+		// // }
+		// else //if (i > stack_a->filled_size / 2)
+		// {
+		// 	rotate_a(stack_a);
+		// 	ft_putstr("ra\n");
+		// 	rotate_table(head, size);
+		// }
 		counter++;
 	}
 }
@@ -398,9 +422,10 @@ void	push_swap(int ac, char **av)
 	initialize_stack(&stack_b, ac - 1);
 	stack_b.filled_size = 0;
 	first_move(&stack_a, &stack_b, ac - 1, mark_head);
+	// sorting_from_A_to_B(&stack_a, &stack_b);
+	// push_a_from_b(&stack_a, &stack_b);
 	sorting_stack_a(&stack_a);
-	sorting_from_A_to_B(&stack_a, &stack_b);
-	
+	best_move(&stack_a, &stack_b);
 /* ************************************************************************** */
 	// i = 0;
 	// while (stack_a.tab[i])

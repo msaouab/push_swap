@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 00:07:04 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/02 10:29:48 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/06 19:53:39 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ typedef struct stacks
 	int	filled_size;
 }	t_stack;
 
+typedef	struct move
+{
+	int	*a_best_move;
+	int	*b_best_move;
+	int	*total_move;
+}	t_move;
+
+
 /* ************************************************************************** */
 
 void	swap_a(t_stack *stack_a);
@@ -41,6 +49,7 @@ void	swap_b(t_stack *stack_b);
 void	push_to_b(t_stack *stack_a, t_stack *stack_b);
 void	rotate_b(t_stack *stack_b);
 void	reverot_b(t_stack *stack_b);
+void	best_move(t_stack *stack_a, t_stack *stack_b);
 
 /* ************************************************************************** */
 

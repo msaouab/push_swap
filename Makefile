@@ -6,7 +6,7 @@
 #    By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 21:38:28 by msaouab           #+#    #+#              #
-#    Updated: 2021/12/30 00:26:20 by msaouab          ###   ########.fr        #
+#    Updated: 2022/01/06 19:41:20 by msaouab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC = ft_atoi.c\
 		stack_ab.c\
 		stack_b.c\
 		stack_a.c\
+		move_stacks.c\
 
 OBJ = ${SRC:.c=.o}
 
