@@ -5,57 +5,49 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/20 13:41:35 by msaouab           #+#    #+#             */
-/*   Updated: 2021/12/29 04:55:11 by msaouab          ###   ########.fr       */
+/*   Created: 2021/12/30 00:07:04 by msaouab           #+#    #+#             */
+/*   Updated: 2022/01/02 10:29:48 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+/* ************************************************************************** */
 # include <unistd.h>
 # include <stdlib.h>
-# include <unistd.h>
+# include <string.h>
 # include <stdio.h>
 
-# define false 0
-# define true 1
+# define FALSE 0
+# define TRUE 1
 
-/* **************************** | struct | ********************************** */
-
-typedef struct s_stack
+typedef struct stacks
 {
 	int	*tab;
 	int	filled_size;
 }	t_stack;
 
-/* *************************** | f_action | ********************************* */
+/* ************************************************************************** */
 
 void	swap_a(t_stack *stack_a);
-void	swap_b(t_stack *stack_b);
-void	swap_ss(t_stack *stack_a, t_stack *stack_b);
 void	push_to_a(t_stack *stack_a, t_stack *stack_b);
-void	push_to_b(t_stack *stack_a, t_stack *stack_b);
 void	rotate_a(t_stack *stack_a);
-void	rotate_b(t_stack *stack_b);
-void	rot_ab(t_stack *stack_a, t_stack *stack_b);
 void	reverot_a(t_stack *stack_a);
-void	reverot_b(t_stack *stack_b);
+void	swap_ss(t_stack *stack_a, t_stack *stack_b);
+void	rot_ab(t_stack *stack_a, t_stack *stack_b);
 void	reverot_ab(t_stack *stack_a, t_stack *stack_b);
+void	swap_b(t_stack *stack_b);
+void	push_to_b(t_stack *stack_a, t_stack *stack_b);
+void	rotate_b(t_stack *stack_b);
+void	reverot_b(t_stack *stack_b);
 
-/* ************************* | functions_p | ******************************** */
+/* ************************************************************************** */
 
-void	ft_putstr(char *s);
-size_t	ft_strlen(char *s);
 int		ft_atoi(char *str);
-void	ft_error(int n);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
+size_t	ft_strlen(char *s);
+void	ft_putstr(char *s);
+void	ft_error(int ac);
 
-
-
-
-int	*set_index(int *tab, int size);
-int get_min_number_index(int *tab, int size);
-int get_max_number_index(int *tab, int size);
-int get_index_of_number(int *tab, int size, int number);
 #endif

@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 01:19:09 by msaouab           #+#    #+#             */
-/*   Updated: 2021/12/29 06:53:19 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/02 10:26:34 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	rot_ab(t_stack *stack_a, t_stack *stack_b)
 {
 	rotate_a(stack_a);
 	rotate_b(stack_b);
-	
 }
 
 void	reverot_ab(t_stack *stack_a, t_stack *stack_b)

@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 01:19:03 by msaouab           #+#    #+#             */
-/*   Updated: 2021/12/29 07:57:52 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/02 10:25:50 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@ void	swap_a(t_stack *stack_a)
 	tmp = stack_a->tab[0];
 	stack_a->tab[0] = stack_a->tab[1];
 	stack_a->tab[1] = tmp;
-	ft_putstr("sa\n");
-	// int i = 0;
-	// while (i < stack_a->filled_size)
-	// 	printf("%d\n", stack_a->tab[i++]);
 }
 
 void	push_to_a(t_stack *stack_a, t_stack *stack_b)
@@ -51,7 +47,6 @@ void	push_to_a(t_stack *stack_a, t_stack *stack_b)
 	}
 	stack_b->filled_size -= 1;
 	stack_a->filled_size += 1;
-	//ft_putstr("pa\n");
 }
 
 void	rotate_a(t_stack *stack_a)
@@ -69,7 +64,6 @@ void	rotate_a(t_stack *stack_a)
 		i++;
 	}
 	stack_a->tab[i] = tmp;
-	// ft_putstr("ra\n");
 }
 
 void	reverot_a(t_stack *stack_a)
@@ -87,5 +81,4 @@ void	reverot_a(t_stack *stack_a)
 		i--;
 	}
 	stack_a->tab[0] = tmp;
-	// ft_putstr("rra\n");
 }
