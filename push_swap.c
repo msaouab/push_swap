@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 00:02:13 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/07 00:52:56 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/08 01:57:28 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,47 +230,52 @@ void	first_move(t_stack *stack_a, t_stack *stack_b, int size, int *head)
 	int	counter;
 	int	initial_size_of_stack_a;
 
+	(void)size;
+	(void)stack_b;
 	counter = 0;
 	initial_size_of_stack_a = stack_a->filled_size;
+		// int i = 0;
+		// while (i < size)
+		// 	printf("head[i] = %d\n", head[i++]);
 	while (counter < initial_size_of_stack_a)
 	{
-		i = 0;
-		while (head[0] == 1)
-			i++;
-		if (head[0] == 0)
+		if (head[counter] == 0)
 		{
 			push_to_b(stack_a, stack_b);
 			ft_putstr("pb\n");
-			head[0] = 1;
+			counter++;
+			// head[0] = 1;
+			// rotate_table(head, size);
 		}
-		else if (i < stack_a->filled_size / 2)
+		else
 		{
-			rotate_a(stack_a);
-			ft_putstr("ra\n");
-			rotate_table(head, size);
+			i = 0;
+			while (head[counter])
+			{
+				i++;
+				counter++;
+			}
+			if (counter == initial_size_of_stack_a)
+				i = 0;
+			if (i <= stack_a->filled_size / 2)
+			{
+				while (i)
+				{
+					rotate_a(stack_a);
+					ft_putstr("ra\n");
+					i--;
+				}
+			}
+			else //if (i > stack_a->filled_size / 2)
+			{
+				while (i < stack_a->filled_size)
+				{
+					reverot_a(stack_a);
+					ft_putstr("rra\n");
+					i++;
+				}
+			}
 		}
-		else if (i > stack_a->filled_size)
-		{
-			reverot_a(stack_a);
-			ft_putstr("rra\n");
-			
-		}
-		// // i = 0;
-		// // while (head[0] == 1)
-		// // 	i++;
-		// // if (i < stack_a->filled_size / 2)
-		// // {
-		// // 	rotate_a(stack_a);
-		// // 	ft_putstr("ra\n");
-		// // 	rotate_table(head, size);
-		// // }
-		// else //if (i > stack_a->filled_size / 2)
-		// {
-		// 	rotate_a(stack_a);
-		// 	ft_putstr("ra\n");
-		// 	rotate_table(head, size);
-		// }
-		counter++;
 	}
 }
 
@@ -422,17 +427,11 @@ void	push_swap(int ac, char **av)
 	initialize_stack(&stack_b, ac - 1);
 	stack_b.filled_size = 0;
 	first_move(&stack_a, &stack_b, ac - 1, mark_head);
-	// sorting_from_A_to_B(&stack_a, &stack_b);
-	// push_a_from_b(&stack_a, &stack_b);
+	sorting_from_A_to_B(&stack_a, &stack_b);
+	push_a_from_b(&stack_a, &stack_b);
 	sorting_stack_a(&stack_a);
-	best_move(&stack_a, &stack_b);
+	// best_move(&stack_a, &stack_b);
 /* ************************************************************************** */
-	// i = 0;
-	// while (stack_a.tab[i])
-	// {
-	// 	printf("tab_indx = {%d}\ttab[i] = {%d}\n", tab_indx[i], stack_a.tab[i]);
-	// 	i++;
-	// }
 	// i = 0;
 	// printf("-------------\n");
 	// // printf("  stack_a[i]\t   \tstack_b[i]\n");
