@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 00:02:13 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/08 01:57:28 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/08 13:23:56 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,19 +224,14 @@ int	*greater_than(int *tab, int size)
 	return (true_false(tab, size, index));
 }
 
-void	first_move(t_stack *stack_a, t_stack *stack_b, int size, int *head)
+void	first_move(t_stack *stack_a, t_stack *stack_b, int *head)
 {
 	int	i;
 	int	counter;
 	int	initial_size_of_stack_a;
 
-	(void)size;
-	(void)stack_b;
 	counter = 0;
 	initial_size_of_stack_a = stack_a->filled_size;
-		// int i = 0;
-		// while (i < size)
-		// 	printf("head[i] = %d\n", head[i++]);
 	while (counter < initial_size_of_stack_a)
 	{
 		if (head[counter] == 0)
@@ -244,8 +239,6 @@ void	first_move(t_stack *stack_a, t_stack *stack_b, int size, int *head)
 			push_to_b(stack_a, stack_b);
 			ft_putstr("pb\n");
 			counter++;
-			// head[0] = 1;
-			// rotate_table(head, size);
 		}
 		else
 		{
@@ -266,7 +259,7 @@ void	first_move(t_stack *stack_a, t_stack *stack_b, int size, int *head)
 					i--;
 				}
 			}
-			else //if (i > stack_a->filled_size / 2)
+			else
 			{
 				while (i < stack_a->filled_size)
 				{
@@ -295,22 +288,24 @@ void	sorting_stack_a(t_stack *stack_a)
 int	count_instaction_a(t_stack *stack_a, t_stack *stack_b)
 {
 	int	i;
+	int	j;
 	int	start;
 
 	i = 0;
 	start = 0;
-	while (i + 1 < stack_a->filled_size && stack_a->tab[i] < stack_a->tab[i + 1])
+	j = stack_a->filled_size;
+	while (i + 1 < j && stack_a->tab[i] < stack_a->tab[i + 1])
 	{
 		i++;
 		start++;
 	}
-	if (i + 1 == stack_a->filled_size && stack_a->tab[i + 1] > stack_a->tab[0])
+	if (i + 1 == j && stack_a->tab[i + 1] > stack_a->tab[0])
 		i = 0;
 	else
 		i = start + 1;
-	while (i < stack_a->filled_size && stack_b->tab[0] > stack_a->tab[i])
+	while (i < j && stack_b->tab[0] > stack_a->tab[i])
 		i++;
-	if (start && i == stack_a->filled_size)
+	if (start && i == j)
 	{
 		i = 0;
 		while (i < start && stack_b->tab[0] > stack_a->tab[i])
@@ -326,37 +321,13 @@ void	push_a_from_b(t_stack *stack_a, t_stack *stack_b)
 
 	i = 0;
 	count = count_instaction_a(stack_a, stack_b);
-	// printf("stackb.num : %d, count : %d\n", stack_b->tab[0], count);
-	// printf("-------------\n");
-	// i = 0;
-	// while (i < stack_a->filled_size)
-	// {
-	// 	printf("stack_a[%d] = {%d}\n", i, stack_a->tab[i]);
-	// 	i++;
-	// }
-	// printf("-------------\n");
-	// i = 0;
-	// while (i < stack_b->filled_size)
-	// {
-	// 	printf("stack_b[%d] = {%d}\n", i, stack_b->tab[i]);
-	// 	i++;
-	// }
-
-	i = 0;
-	if (count == 0)
-	{
-		push_to_a(stack_a, stack_b);
-		ft_putstr("pa\n");
-	}
-	else if (count <= stack_a->filled_size / 2)
+	if (count <= stack_a->filled_size / 2)
 	{
 		while (i++ < count)
 		{
 			rotate_a(stack_a);
 			ft_putstr("ra\n");
 		}
-		push_to_a(stack_a, stack_b);
-		ft_putstr("pa\n");
 	}
 	else if (count > stack_a->filled_size / 2)
 	{
@@ -366,12 +337,12 @@ void	push_a_from_b(t_stack *stack_a, t_stack *stack_b)
 			reverot_a(stack_a);
 			ft_putstr("rra\n");
 		}
-		push_to_a(stack_a, stack_b);
-		ft_putstr("pa\n");
 	}
+	push_to_a(stack_a, stack_b);
+	ft_putstr("pa\n");
 }
 
-void	sorting_from_A_to_B(t_stack *stack_a, t_stack *stack_b)
+void	sorting_from_a_to_a(t_stack *stack_a, t_stack *stack_b)
 {
 	int	i;
 
@@ -382,7 +353,6 @@ void	sorting_from_A_to_B(t_stack *stack_a, t_stack *stack_b)
 		i++;
 	}
 	i = min_num_indx(stack_a->tab, stack_a->filled_size);
-	// printf("i = %d, size = %d\n", i, stack_a->filled_size / 2);
 	if (i <= stack_a->filled_size / 2)
 	{
 		while (i--)
@@ -426,21 +396,23 @@ void	push_swap(int ac, char **av)
 	mark_head = greater_than(stack_a.tab, ac - 1);
 	initialize_stack(&stack_b, ac - 1);
 	stack_b.filled_size = 0;
-	first_move(&stack_a, &stack_b, ac - 1, mark_head);
-	sorting_from_A_to_B(&stack_a, &stack_b);
-	push_a_from_b(&stack_a, &stack_b);
+	first_move(&stack_a, &stack_b, mark_head);
 	sorting_stack_a(&stack_a);
-	// best_move(&stack_a, &stack_b);
+	best_move(&stack_a, &stack_b);
+	// sorting_from_a_to_a(&stack_a, &stack_b);
+	// push_a_from_b(&stack_a, &stack_b);
 /* ************************************************************************** */
-	// i = 0;
-	// printf("-------------\n");
-	// // printf("  stack_a[i]\t   \tstack_b[i]\n");
-	// while (i < stack_a.filled_size)
-	// {
-	// 	printf("stack_a[%d] = {%d}\n", i, stack_a.tab[i]);
-	// 	i++;
-	// }
-	// printf("-------------\n");
+	i = 0;
+	int j = 0;
+	printf("-----------------------\n");
+	// printf("  stack_a[i]\t   \tstack_b[i]\n");
+	while (i < stack_a.filled_size || j < stack_b.filled_size)
+	{
+		printf("||stack_a[%d] = {%d}\t||\tstack_b[%d] = {%d}\n", i, stack_a.tab[i], j, stack_b.tab[j]);
+		i++;
+		j++;
+	}
+	printf("-----------------------\n");
 	// i = 0;
 	// while (i < stack_b.filled_size)
 	// {
