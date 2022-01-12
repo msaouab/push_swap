@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 00:02:13 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/08 13:23:56 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/12 04:56:57 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -397,28 +397,28 @@ void	push_swap(int ac, char **av)
 	initialize_stack(&stack_b, ac - 1);
 	stack_b.filled_size = 0;
 	first_move(&stack_a, &stack_b, mark_head);
-	sorting_stack_a(&stack_a);
-	best_move(&stack_a, &stack_b);
+	recuvery_data_from_b(&stack_a, &stack_b);
+	// sorting_stack_a(&stack_a);
+	// best_move(&stack_a, &stack_b);
 	// sorting_from_a_to_a(&stack_a, &stack_b);
 	// push_a_from_b(&stack_a, &stack_b);
 /* ************************************************************************** */
-	i = 0;
-	int j = 0;
-	printf("-----------------------\n");
-	// printf("  stack_a[i]\t   \tstack_b[i]\n");
-	while (i < stack_a.filled_size || j < stack_b.filled_size)
-	{
-		printf("||stack_a[%d] = {%d}\t||\tstack_b[%d] = {%d}\n", i, stack_a.tab[i], j, stack_b.tab[j]);
-		i++;
-		j++;
-	}
-	printf("-----------------------\n");
+	// i = 0;
+	// printf("-----------------------\n");
+	// // printf("  stack_a[i]\t   \tstack_b[i]\n");
+	// while (i < stack_a.filled_size)
+	// {
+	// 	printf("||stack_a[%d] = {%d}\n", i, stack_a.tab[i]);	
+	// 	i++;
+	// }
+	// printf("-----------------------\n");
 	// i = 0;
 	// while (i < stack_b.filled_size)
 	// {
 	// 	printf("stack_b[%d] = {%d}\n", i, stack_b.tab[i]);
 	// 	i++;
 	// }
+	// printf("-----------------------\n");
 /* ************************************************************************** */
 }
 
