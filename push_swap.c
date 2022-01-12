@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 00:02:13 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/12 04:56:57 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/12 05:00:44 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -403,22 +403,22 @@ void	push_swap(int ac, char **av)
 	// sorting_from_a_to_a(&stack_a, &stack_b);
 	// push_a_from_b(&stack_a, &stack_b);
 /* ************************************************************************** */
-	// i = 0;
-	// printf("-----------------------\n");
-	// // printf("  stack_a[i]\t   \tstack_b[i]\n");
-	// while (i < stack_a.filled_size)
-	// {
-	// 	printf("||stack_a[%d] = {%d}\n", i, stack_a.tab[i]);	
-	// 	i++;
-	// }
-	// printf("-----------------------\n");
-	// i = 0;
-	// while (i < stack_b.filled_size)
-	// {
-	// 	printf("stack_b[%d] = {%d}\n", i, stack_b.tab[i]);
-	// 	i++;
-	// }
-	// printf("-----------------------\n");
+	i = 0;
+	printf("-----------------------\n");
+	// printf("  stack_a[i]\t   \tstack_b[i]\n");
+	while (i < stack_a.filled_size)
+	{
+		printf("||stack_a[%d] = {%d}\n", i, stack_a.tab[i]);	
+		i++;
+	}
+	printf("-----------------------\n");
+	i = 0;
+	while (i < stack_b.filled_size)
+	{
+		printf("stack_b[%d] = {%d}\n", i, stack_b.tab[i]);
+		i++;
+	}
+	printf("-----------------------\n");
 /* ************************************************************************** */
 }
 

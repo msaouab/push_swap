@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:39:10 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/12 04:51:24 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/12 05:17:58 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ int	*bes_move_a(t_stack *stack_a, t_stack *stack_b);
 
 int	*bes_move_b(t_stack *stack_b);
 
-void	ft_check_swap_in_a(t_stack *stack_a)
-{
-	if (stack_a->tab[0] > stack_a->tab[1])
-	{
-		swap_a(stack_a);
-		ft_putstr("sa\n");
-	}
-}
+// void	ft_check_swap_in_a(t_stack *stack_a)
+// {
+// 	if (stack_a->tab[0] > stack_a->tab[1])
+// 	{
+// 		swap_a(stack_a);
+// 		ft_putstr("sa\n");
+// 	}
+// }
 
 void	push_element_to_a(t_stack *stack_a, t_stack *stack_b, int best_indx)
 {
@@ -65,7 +65,6 @@ void	push_element_to_a(t_stack *stack_a, t_stack *stack_b, int best_indx)
 		}
 		while (a_best_move < 0)
 		{
-			// printf("check %d\n", a_best_move);
 			reverot_a(stack_a);
 			ft_putstr("rra\n");
 			a_best_move++;
@@ -81,7 +80,6 @@ void	push_element_to_a(t_stack *stack_a, t_stack *stack_b, int best_indx)
 		}
 		while (b_best_move < 0)
 		{
-			// printf("check %d\n", b_best_move);
 			reverot_b(stack_b);
 			ft_putstr("rrb\n");
 			b_best_move++;
@@ -89,7 +87,7 @@ void	push_element_to_a(t_stack *stack_a, t_stack *stack_b, int best_indx)
 	}
 	push_to_a(stack_a, stack_b);
 	ft_putstr("pb\n");
-	ft_check_swap_in_a(stack_a);
+	// ft_check_swap_in_a(stack_a);
 }
 
 int	*abs_movement(int *tab, int size)
@@ -140,14 +138,14 @@ int	best_move(t_stack *stack_a, t_stack *stack_b)
 void	recuvery_data_from_b(t_stack *stack_a, t_stack *stack_b)
 {
 	int	indx;
-	// int	i;
+	int	i;
 
-	// i = 0; //stack_b->filled_size;
-	while (stack_b->filled_size != 0)
+	i = stack_b->filled_size;
+	while (i != 0) //(stack_b->filled_size != 0)
 	{
 		indx = best_move(stack_a, stack_b);
 		push_element_to_a(stack_a, stack_b, indx);
-		// i++;
+		i++;
 	}
 }
 
@@ -158,7 +156,7 @@ int	*bes_move_a(t_stack *stack_a, t_stack *stack_b)
 	int	j;
 
 	j = 0;
-	a_move = malloc(sizeof(int) * stack_b->filled_size);
+	a_move = malloc(sizeof(int) * 7); //stack_b->filled_size);
 	while (j < stack_b->filled_size)
 	{
 		i = 0;
@@ -181,7 +179,7 @@ int	*bes_move_b(t_stack *stack_b)
 	int	i;
 
 	i = 0;
-	b_move = malloc(sizeof(int) * stack_b->filled_size);
+	b_move = malloc(sizeof(int) * 7); //stack_b->filled_size);
 	while (i < stack_b->filled_size)
 	{
 		b_move[i] = i;
