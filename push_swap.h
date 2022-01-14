@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 00:07:04 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/12 03:51:42 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/14 21:16:08 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,13 @@ void	rotate_b(t_stack *stack_b);
 void	reverot_b(t_stack *stack_b);
 int		best_move(t_stack *stack_a, t_stack *stack_b);
 int		min_num_indx(int *tab, int size);
-int	*set_index(int *tab, int size);
-int	*total_move(t_stack *stack_a, t_stack *stack_b);
+int		*set_index(int *tab, int size);
+int		*total_move(t_stack *stack_a, t_stack *stack_b);
 void	push_element_to_a(t_stack *stack_a, t_stack *stack_b, int min_num);
 void	recuvery_data_from_b(t_stack *stack_a, t_stack *stack_b);
-// void	best_move(t_stack *stack_a, t_stack *stack_b);
+void	ft_free(int *tab);
+int		*bes_move_b(t_stack *stack_b);
+int		*bes_move_a(t_stack *stack_a, t_stack *stack_b);
 
 /* ************************************************************************** */
 

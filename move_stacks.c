@@ -6,78 +6,65 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:39:10 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/13 01:14:55 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/14 23:15:13 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*bes_move_a(t_stack *stack_a, t_stack *stack_b);
 
-int	*bes_move_b(t_stack *stack_b);
 
 void	push_element_to_a(t_stack *stack_a, t_stack *stack_b, int best_indx)
 {
 	int	*tab_move_a;
 	int	*tab_move_b;
-	int a_best_move;
-	int b_best_move;
+	int	a_best_move;
+	int	b_best_move;
 
 	tab_move_a = bes_move_a(stack_a, stack_b);
 	tab_move_b = bes_move_b(stack_b);
 	a_best_move = tab_move_a[best_indx];
 	b_best_move = tab_move_b[best_indx];
-	// printf("----------\nindx = {%d}\t \t a_move = {%d} \t \t b_move = {%d}\n", best_indx, a_best_move, b_best_move);
-	if (a_best_move * b_best_move >= 0)
+	while (a_best_move > 0 && b_best_move > 0)
 	{
-		if (a_best_move != 0 && b_best_move != 0)
-		{
-			while (a_best_move > 0)
-			{
-				rotate_ab(stack_a, stack_b);
-				a_best_move--;
-				b_best_move--;	
-			}
-			while (a_best_move < 0)
-			{
-				reverot_ab(stack_a, stack_b);
-				a_best_move++;
-				b_best_move++;
-			}
-		}
+		rotate_ab(stack_a, stack_b);
+		a_best_move--;
+		b_best_move--;
 	}
-	if (a_best_move != 0)
+	while (a_best_move < 0 && b_best_move < 0)
 	{
-		while (a_best_move > 0)
-		{
-			rotate_a(stack_a);
-			ft_putstr("ra\n");
-			a_best_move--;
-		}
-		while (a_best_move < 0)
-		{
-			reverot_a(stack_a);
-			ft_putstr("rra\n");
-			a_best_move++;
-		}
+		reverot_ab(stack_a, stack_b);
+		a_best_move++;
+		b_best_move++;
 	}
-	if (b_best_move != 0)
+	while (a_best_move > 0)
 	{
-		while (b_best_move > 0)
-		{
-			rotate_b(stack_b);
-			ft_putstr("rb\n");
-			b_best_move--;
-		}
-		while (b_best_move < 0)
-		{
-			reverot_b(stack_b);
-			ft_putstr("rrb\n");
-			b_best_move++;
-		}
+		rotate_a(stack_a);
+		ft_putstr("ra\n");
+		a_best_move--;
+	}
+	while (a_best_move < 0)
+	{
+		reverot_a(stack_a);
+		ft_putstr("rra\n");
+		a_best_move++;
+	}
+	while (b_best_move > 0)
+	{
+		rotate_b(stack_b);
+		ft_putstr("rb\n");
+		b_best_move--;
+	}
+	while (b_best_move < 0)
+	{
+		reverot_b(stack_b);
+		ft_putstr("rrb\n");
+		b_best_move++;
 	}
 	push_to_a(stack_a, stack_b);
 	ft_putstr("pa\n");
+	ft_free(tab_move_a);
+	ft_free(tab_move_b);
 }
 
 int	abs_movement(int t)
@@ -101,10 +88,10 @@ int	*total_movement(t_stack *stack_a, t_stack *stack_b)
 	while (i < stack_b->filled_size)
 	{
 		t_movement[i] = abs_movement(indx_min_num_a[i]) + abs_movement(indx_min_num_b[i]);
-		// printf("t_movement[%d] = {%d} \t a_tab = {%d} \t b_tab = {%d}\n", i, t_movement[i], indx_min_num_a[i], indx_min_num_b[i]);
 		i++;
 	}
-	// t_movement = abs_movement(t_movement, stack_b->filled_size); // free and return just the value in the code;
+	ft_free(indx_min_num_a);
+	ft_free(indx_min_num_b);
 	return (t_movement);
 }
 
@@ -112,47 +99,30 @@ int	best_move(t_stack *stack_a, t_stack *stack_b)
 {
 	int	*tab_move;
 	int	indx_min_num;
-	
+
 	tab_move = total_movement(stack_a, stack_b);
 	indx_min_num = min_num_indx(tab_move, stack_b->filled_size);
+
+
+
+
+
+	// int i;
+	// i = 0;
+	// printf("\n\n. : | ");
+	// while (i < stack_b->filled_size)
+	// 	printf(" %d |", tab_move[i++]);
+	// printf(" : .\nmin_idx = 	%d\n\n", indx_min_num);
+	
+	
+	
+	
+	
+	
+	
+	ft_free(tab_move);
 	return (indx_min_num);
-}
-
-void	recuvery_data_from_b(t_stack *stack_a, t_stack *stack_b)
-{
-	int	indx;
-	// int	i;
-
-	// i = 1;//stack_b->filled_size;
-	while (stack_b->filled_size != 0)
-	{
-		indx = best_move(stack_a, stack_b);
-		push_element_to_a(stack_a, stack_b, indx);
-		// i--;
-
-		/* ************************************************************************** */
 	
-	// int	j;
-	
-	// j = 0;
-	// printf("-----------------------\n");
-	// // printf("  stack_a[i]\t   \tstack_b[i]\n");
-	// while (j < stack_a->filled_size)
-	// {
-	// 	printf("||stack_a[%d] = {%d}\n", j, stack_a->tab[j]);	
-	// 	j++;
-	// }
-	// printf("-----------------------\n");
-	// j = 0;
-	// while (j < stack_b->filled_size)
-	// {
-	// 	printf("stack_b[%d] = {%d}\n", j, stack_b->tab[j]);
-	// 	j++;
-	// }
-	// printf("-----------------------\n");
-/* ************************************************************************** */
-		
-	}
 }
 
 int	*bes_move_a(t_stack *stack_a, t_stack *stack_b)
@@ -170,7 +140,6 @@ int	*bes_move_a(t_stack *stack_a, t_stack *stack_b)
 		i = indx_min_num;
 		while (i < stack_a->filled_size && stack_a->tab[i] < stack_b->tab[j])
 		{
-				// printf("stack_a[%d] = %d \t stack_b[%d] = %d \t stack_a[%d] = %d \t  a_move[%d] = %d\n", i, stack_a->tab[i], j, stack_b->tab[j], i + 1, stack_a->tab[i + 1], j, a_move[j]);
 			i++;
 		}
 		if (i == stack_a->filled_size && stack_a->tab[0] < stack_b->tab[j])
@@ -178,7 +147,6 @@ int	*bes_move_a(t_stack *stack_a, t_stack *stack_b)
 			i = 0;
 			while (i < indx_min_num && stack_a->tab[i] < stack_b->tab[j])
 			{
-					// printf("stack_a[%d] = %d \t stack_b[%d] = %d \t stack_a[%d] = %d \t  a_move[%d] = %d\n", i, stack_a->tab[i], j, stack_b->tab[j], i + 1, stack_a->tab[i + 1], j, a_move[j]);
 				i++;
 			}
 		}
@@ -205,4 +173,15 @@ int	*bes_move_b(t_stack *stack_b)
 		i++;
 	}
 	return (b_move);
+}
+
+void	recuvery_data_from_b(t_stack *stack_a, t_stack *stack_b)
+{
+	int	indx;
+
+	while (stack_b->filled_size != 0)
+	{
+		indx = best_move(stack_a, stack_b);
+		push_element_to_a(stack_a, stack_b, indx);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 01:19:03 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/02 10:25:50 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/14 02:16:07 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,21 @@ void	push_to_a(t_stack *stack_a, t_stack *stack_b)
 
 	if (stack_b->filled_size == 0)
 		return ;
-	if (stack_a->filled_size != 0)
+	i = stack_a->filled_size;
+	while (i > 0)
 	{
-		i = stack_a->filled_size;
-		while (i >= 0)
-		{
-			stack_a->tab[i + 1] = stack_a->tab[i];
-			i--;
-		}
+		stack_a->tab[i] = stack_a->tab[i - 1];
+		i--;
 	}
 	stack_a->tab[0] = stack_b->tab[0];
-	i = 0;
-	while (i <= stack_b->filled_size - 1)
-	{
-		stack_b->tab[i - 1] = stack_b->tab[i];
-		i++;
-	}
 	stack_b->filled_size -= 1;
 	stack_a->filled_size += 1;
+	i = 0;
+	while (i < stack_b->filled_size)
+	{
+		stack_b->tab[i] = stack_b->tab[i + 1];
+		i++;
+	}
 }
 
 void	rotate_a(t_stack *stack_a)
@@ -75,9 +72,9 @@ void	reverot_a(t_stack *stack_a)
 		return ;
 	i = stack_a->filled_size - 1;
 	tmp = stack_a->tab[i];
-	while (i >= 0)
+	while (i > 0)
 	{
-		stack_a->tab[i + 1] = stack_a->tab[i];
+		stack_a->tab[i] = stack_a->tab[i - 1];
 		i--;
 	}
 	stack_a->tab[0] = tmp;
