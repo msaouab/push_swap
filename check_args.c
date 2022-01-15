@@ -6,11 +6,47 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 16:06:51 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/14 21:16:01 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/15 00:36:36 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_error(int ac)
+{
+	if (ac == 1)
+	{
+		write(1, "error\n", 6);
+		exit(1);
+	}
+	if (ac == 2)
+	{
+		write(1, "error\n", 6);
+		exit(0);
+	}
+	if (ac == 5)
+		write(1, "woow\n", 5);
+}
+
+int	*ft_check_dup(int *arr, int size)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < size - 1)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (arr[i] == arr[j])
+				ft_error(1);
+			j++;
+		}
+		i++;
+	}
+	return (arr);
+}
 
 int	ft_check_str(char *str, int i)
 {

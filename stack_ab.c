@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 01:19:09 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/12 03:51:34 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/15 01:02:12 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ void	swap_ss(t_stack *stack_a, t_stack *stack_b)
 {
 	swap_a(stack_a);
 	swap_b(stack_b);
-	ft_putstr("ss\n");
+	ft_putstr_fd("ss\n", 1);
 }
 
 void	rotate_ab(t_stack *stack_a, t_stack *stack_b)
 {
 	rotate_a(stack_a);
 	rotate_b(stack_b);
-	ft_putstr("rr\n");
+	ft_putstr_fd("rr\n", 1);
 }
 
 void	reverot_ab(t_stack *stack_a, t_stack *stack_b)
 {
 	reverot_a(stack_a);
 	reverot_b(stack_b);
-	ft_putstr("rrr\n");
+	ft_putstr_fd("rrr\n", 1);
 }
