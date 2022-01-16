@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 16:06:51 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/15 23:58:18 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/16 06:05:22 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ int	*ft_check_dup(int *arr, int size)
 		}
 		i++;
 	}
-	if (i == 0)
-		ft_error(2);
 	return (arr);
 }
 

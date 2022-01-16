@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 00:02:13 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/15 20:49:40 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/16 08:01:06 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,16 +94,14 @@ void	push_swap(int ac, char **av)
 	int		i;
 
 	tab = malloc(sizeof(int) * (ac));
-	i = 0;
-	while (av[i])
-	{
+	i = -1;
+	while (av[++i])
 		tab[i] = ft_atoi(av[i]);
-		i++;
-	}
 	ft_check_dup(tab, ac);
 	initialize_stack(&stack_a, ac);
 	ft_memcpy(stack_a.tab, tab, (ac) * 4);
 	stack_a.filled_size = ac;
+	less_than_six(&stack_a);
 	mark_head = perfect_groups(stack_a.tab, stack_a.filled_size);
 	initialize_stack(&stack_b, ac);
 	stack_b.filled_size = 0;

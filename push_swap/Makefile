@@ -6,7 +6,7 @@
 #    By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 21:38:28 by msaouab           #+#    #+#              #
-#    Updated: 2022/01/16 03:24:49 by msaouab          ###   ########.fr        #
+#    Updated: 2022/01/16 06:27:41 by msaouab          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC =	check_args.c\
 		stack_a.c\
 		stack_ab.c\
 		move_stacks.c\
+		less_than_6.c\
 
 SRC_CHECKER =	my_checker.c\
 				get_next_line.c\

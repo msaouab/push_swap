@@ -6,11 +6,22 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 01:19:03 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/15 05:52:19 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/16 08:17:44 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	swap_a_checker(t_stack *stack_a)
+{
+	int	tmp;
+
+	if (stack_a->filled_size == 0)
+		return ;
+	tmp = stack_a->tab[0];
+	stack_a->tab[0] = stack_a->tab[1];
+	stack_a->tab[1] = tmp;
+}
 
 void	swap_a(t_stack *stack_a)
 {
@@ -21,6 +32,7 @@ void	swap_a(t_stack *stack_a)
 	tmp = stack_a->tab[0];
 	stack_a->tab[0] = stack_a->tab[1];
 	stack_a->tab[1] = tmp;
+	ft_putstr_fd("sa\n", 1);
 }
 
 void	push_to_a(t_stack *stack_a, t_stack *stack_b)

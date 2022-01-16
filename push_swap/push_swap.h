@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 00:07:04 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/16 03:19:57 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/16 08:18:14 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,14 @@ int		*total_movement(t_stack *stack_a, t_stack *stack_b);
 int		best_move(t_stack *stack_a, t_stack *stack_b);
 long	ft_atoi(char *str);
 int		*ft_check_dup(int *arr, int size);
+void	less_than_six(t_stack *stack_a);
 
 /* **************************** checker ************************************* */
 
 void	checker(char **str, int size);
 char	*get_next_line(int fd);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+void	swap_a_checker(t_stack *stack_a);
 
 /* ************************************************************************** */
 

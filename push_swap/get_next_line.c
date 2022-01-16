@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 02:28:40 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/16 03:07:39 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/16 05:27:27 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ char	*ft_strdup(char *s1)
 {
 	int		i;
 	char	*dst;
-	char	*tmp;
 
 	i = ft_strlen(s1);
 	dst = malloc(sizeof(char) * (i + 1));
@@ -47,9 +46,7 @@ char	*ft_strdup(char *s1)
 		i++;
 	}
 	dst[i] = '\0';
-	tmp = dst;
-	free(dst);
-	return (tmp);
+	return (dst);
 }
 
 char	*get_next_line(int fd)
