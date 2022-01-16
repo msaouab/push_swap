@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 19:39:10 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/15 04:14:53 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/16 03:30:16 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ void	both_stack(t_stack *stack_a, t_stack *stack_b, int *a_move, int *b_move)
 	while ((*a_move) > 0 && (*b_move) > 0)
 	{
 		rotate_ab(stack_a, stack_b);
+		ft_putstr_fd("rr\n", 1);
 		(*a_move)--;
 		(*b_move)--;
 	}
 	while ((*a_move) < 0 && (*b_move) < 0)
 	{
 		reverot_ab(stack_a, stack_b);
+		ft_putstr_fd("rrr\n", 1);
 		(*a_move)++;
 		(*b_move)++;
 	}

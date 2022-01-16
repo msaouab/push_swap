@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 16:06:51 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/15 00:36:36 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/15 23:58:18 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,7 @@ void	ft_error(int ac)
 		exit(1);
 	}
 	if (ac == 2)
-	{
-		write(1, "error\n", 6);
 		exit(0);
-	}
-	if (ac == 5)
-		write(1, "woow\n", 5);
 }
 
 int	*ft_check_dup(int *arr, int size)
@@ -45,12 +40,14 @@ int	*ft_check_dup(int *arr, int size)
 		}
 		i++;
 	}
+	if (i == 0)
+		ft_error(2);
 	return (arr);
 }
 
-int	ft_check_str(char *str, int i)
+long	ft_check_str(char *str, long i)
 {
-	int	res;
+	long	res;
 
 	res = 0;
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
@@ -59,12 +56,14 @@ int	ft_check_str(char *str, int i)
 		res += str[i] - '0';
 		i++;
 	}
+	if (res > 2147483647 || res < -2147483648)
+		ft_error(1);
 	if (str[i] != '\0')
 		ft_error(1);
 	return (res);
 }
 
-int	ft_atoi(char *str)
+long	ft_atoi(char *str)
 {
 	long	i;
 	long	res;
