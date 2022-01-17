@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 00:07:04 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/17 04:10:35 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/17 12:15:40 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
-#include <stdio.h>
 
 # define FALSE 0
 # define TRUE 1
@@ -64,6 +63,9 @@ int		best_move(t_stack *stack_a, t_stack *stack_b);
 long	ft_atoi(char *str);
 int		*ft_check_dup(int *arr, int size);
 void	less_than_six(t_stack *stack_a, t_stack *stack_b);
+void	equal_five(t_stack *stack_a, t_stack *stack_b);
+void	compliting_equal_five(t_stack *stack_a, t_stack *stack_b);
+void	equal_three(t_stack *stack_a);
 
 /* **************************** checker ************************************* */
 
