@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 00:02:13 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/16 08:01:06 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/17 11:47:59 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,11 @@ void	push_swap(int ac, char **av)
 	initialize_stack(&stack_a, ac);
 	ft_memcpy(stack_a.tab, tab, (ac) * 4);
 	stack_a.filled_size = ac;
-	less_than_six(&stack_a);
-	mark_head = perfect_groups(stack_a.tab, stack_a.filled_size);
 	initialize_stack(&stack_b, ac);
 	stack_b.filled_size = 0;
+	if (stack_a.filled_size < 4 || stack_a.filled_size == 5)
+		less_than_six(&stack_a, &stack_b);
+	mark_head = perfect_groups(stack_a.tab, stack_a.filled_size);
 	first_move(&stack_a, &stack_b, mark_head);
 	recuvery_data_from_b(&stack_a, &stack_b);
 	sorting_stack_a(&stack_a);

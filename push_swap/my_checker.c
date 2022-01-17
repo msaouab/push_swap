@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 01:05:06 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/16 08:21:57 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/17 11:45:01 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	check_actions(t_stack *stack_a, t_stack *stack_b, char *act)
 	if (ft_strncmp(act, "sa\n", 3) == 0)
 		swap_a_checker(stack_a);
 	else if (ft_strncmp(act, "sb\n", 3) == 0)
-		swap_a(stack_b);
+		swap_b(stack_b);
 	else if (ft_strncmp(act, "ss\n", 3) == 0)
 		swap_ss(stack_a, stack_b);
 	else if (ft_strncmp(act, "ra\n", 3) == 0)

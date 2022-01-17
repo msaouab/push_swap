@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 01:19:03 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/16 08:17:44 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/17 11:45:09 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	swap_a(t_stack *stack_a)
 	tmp = stack_a->tab[0];
 	stack_a->tab[0] = stack_a->tab[1];
 	stack_a->tab[1] = tmp;
-	ft_putstr_fd("sa\n", 1);
 }
 
 void	push_to_a(t_stack *stack_a, t_stack *stack_b)

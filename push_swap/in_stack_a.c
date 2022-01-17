@@ -6,7 +6,7 @@
 /*   By: msaouab <msaouab@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 00:02:13 by msaouab           #+#    #+#             */
-/*   Updated: 2022/01/16 07:58:54 by msaouab          ###   ########.fr       */
+/*   Updated: 2022/01/17 03:57:06 by msaouab          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,19 +79,25 @@ void	first_move(t_stack *stack_a, t_stack *stack_b, int *head)
 	int	counter;
 	int	initial_size_of_stack_a;
 
+	i = 0;
+	while (i < stack_a->filled_size && stack_a->tab[i] < stack_a->tab[i + 1])
+		i++;
 	counter = 0;
 	initial_size_of_stack_a = stack_a->filled_size;
-	i = 0;
-	while (counter < initial_size_of_stack_a)
+	if (i != stack_a->filled_size)
 	{
 		i = 0;
-		if (head[counter] == 0)
+		while (counter < initial_size_of_stack_a)
 		{
-			push_to_b(stack_a, stack_b);
-			ft_putstr_fd("pb\n", 1);
-		}
-		rotate_in_first_move(stack_a, head, counter);
-		counter++;
+			i = 0;
+			if (head[counter] == 0)
+			{
+				push_to_b(stack_a, stack_b);
+				ft_putstr_fd("pb\n", 1);
+			}
+			rotate_in_first_move(stack_a, head, counter);
+			counter++;
+		}	
 	}
 }
 
